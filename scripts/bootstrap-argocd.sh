@@ -2,7 +2,7 @@
 set -e
 
 REGION="ap-south-1"
-CLUSTER_NAME="<your-eks-cluster-name>"
+CLUSTER_NAME="enterprise-prod-eks"
 
 echo "Updating kubeconfig..."
 aws eks update-kubeconfig --region $REGION --name $CLUSTER_NAME
