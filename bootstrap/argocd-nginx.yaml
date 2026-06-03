@@ -9,7 +9,10 @@ spec:
   source:
     repoURL: https://github.com/ravi-vignesh-vel/enterprise-gitops.git
     targetRevision: main
-    path: apps/nginx
+    path: helm/nginx-demo
+    helm:
+      valueFiles:
+        - ../../environments/dev/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
