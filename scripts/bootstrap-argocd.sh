@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REGION="ap-south-1"
+REGION="us-east-1"
 CLUSTER_NAME="enterprise-prod-eks"
 
 echo "Updating kubeconfig..."
