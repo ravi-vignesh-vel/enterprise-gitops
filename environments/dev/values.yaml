@@ -3,3 +3,11 @@ replicaCount: 2
 image:
   repository: nginx
   tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  host: dev-nginx.local
