@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-reader-demo
+  namespace: phase4-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secret-reader-demo
+  template:
+    metadata:
+      labels:
+        app: secret-reader-demo
+    spec:
+      serviceAccountName: secret-reader-sa
+      containers:
+        - name: secret-reader
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Secret mounted at /mnt/secrets-store"
+              ls -l /mnt/secrets-store
+              sleep 3600
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: /mnt/secrets-store
+              readOnly: true
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: phase4-db-secret
